@@ -36,6 +36,19 @@ header>h1 {
     font-weight: 700;
 }
 
+.about_us_li {
+    display: none;
+}
+
+
+.details:hover +.about_us_li {
+    display: block;
+    position: sticky;
+}
+.about_us_li:hover {
+    display: block;
+    position: sticky;
+}
 section {
     margin-left: 80px;
     margin-right: 80px;
@@ -62,13 +75,17 @@ section>div>ul>li {
 }
 
 :link {
-    text-decoration: none;
-    font-style: italic;
+    text-decoration: none;;
+}
+
+a:hover{
+    color: rgb(78, 78, 78);
+    font-style: italic
 }
 
 :visited {
     text-decoration: none;
-    color: black;
+    color: rgb(36, 36, 36);
     font-style: italic;
 }
 
