@@ -1,3 +1,4 @@
+
 let plane;
 let bgX = 0, bgY = 0;
 
@@ -39,12 +40,12 @@ class Plane {
     this.position = createVector(width / 2, height / 2);
     this.velocity = createVector(0, 0);
     this.angle = 0;
-    this.maxTurnAngle = radians(5);
+    this.maxTurnAngle = 360;
     this.speed = 2;
-    this.maxSpeed = 5;
+    this.maxSpeed = 120;
     this.minSpeed = 0.5;
     this.acceleration = 0.1;
-    this.lift = 0; 
+    this.lift = 0.15; 
     this.gravity = 0.05; 
   }
 
@@ -55,24 +56,19 @@ class Plane {
     
     let angleDiff = targetAngle - this.angle;
     angleDiff = atan2(sin(angleDiff), cos(angleDiff));
-    this.angle += constrain(angleDiff, -this.maxTurnAngle, this.maxTurnAngle);
+    this.angle += constrain(angleDiff, -this.maxTurnAngle,                 this.maxTurnAngle);
     
-   
-    if (keyIsDown(UP_ARROW)) {
-      this.speed = constrain(this.speed + this.acceleration, this.minSpeed, this.maxSpeed);
+    if (this.angle > 360 || this.angle <= -360){
+    this.angle = 0
     }
-    if (keyIsDown(DOWN_ARROW)) {
-      this.speed = max(this.speed - this.acceleration, this.minSpeed);
-    }
-    
    
-    this.lift = sin(this.angle) * 0.1; 
-    this.velocity.y -= this.lift; 
+    this.lift = sin(this.angle) * 0.15; 
+    this.velocity.y += this.lift; 
     
     
     this.velocity.y += this.gravity;
     
-    direction.setMag(this.speed);
+    direction.setMag(this.speed*3);
     this.velocity.x = direction.x;
     
     this.position.add(this.velocity);
